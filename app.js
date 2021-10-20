@@ -12,13 +12,13 @@ const con = mongoose.connection
 app.use(bodyParser.json());
 
 con.on('open', () => {
-    console.log('Connected...');
+	console.log('Connected...');
 })
 
 app.use('/api/v1/user', userRouter);
 
 app.listen(9000, () => {
-    console.log("server Started");
+	console.log("server Started");
 })
 
 module.exports = app;

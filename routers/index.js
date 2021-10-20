@@ -9,7 +9,7 @@ const ChangePassword = require('./ChangePassword/index');
 const ChaneUserName = require('./ChangeUserName/index');
 
 router.get('/run', (req, res) => {
-    res.send("From API router")
+	res.send("From API router")
 });
 
 router.post('/sign-up', SignUp);
