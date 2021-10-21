@@ -11,7 +11,7 @@ const ChangePassword = (req, res) => {
 					if (response) {
 						bcrypt.hash(resetPassword, saltRounds, async (error, hash) => {
 							console.log(hash)
-							const result = await User.updateOne(
+							await User.updateOne(
 								{ email: email },
 								{ $set: { password: hash } }
 							);

@@ -1,4 +1,4 @@
-var assert = require('assert');
+/* eslint-disable no-undef */
 const chai = require('chai');
 
 const app = require('../src/index');
