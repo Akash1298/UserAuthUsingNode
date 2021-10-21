@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+const User = require('../../../models/user');
 
 const GetUser = (req, res) => {
 	const { email } = req.body;

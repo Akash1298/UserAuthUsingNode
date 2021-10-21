@@ -1,7 +1,7 @@
 var assert = require('assert');
 const chai = require('chai');
 
-const app = require('../app');
+const app = require('../src/index');
 const chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);

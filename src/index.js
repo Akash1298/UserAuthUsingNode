@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const url = 'mongodb://localhost/UsersData';
 var bodyParser = require('body-parser');
-const userRouter = require('./routers/index');
+const userRouter = require('./app');
 
 const app = express();
 
