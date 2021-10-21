@@ -20,5 +20,4 @@ app.use('/api/v1/user', userRouter);
 app.listen(9000, () => {
 	console.log("server Started");
 })
-
 module.exports = app;
