@@ -10,14 +10,15 @@ chai.should();
 describe("User", () => {
   describe("GET /", () => {
     it("should get all users record", (done) => {
+      //let res = await chai.request(app).get('/api/v1/user/all')
       chai.request(app)
         .get('/api/v1/user/all')
         .then((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
           done();
-        }).catch(() => {
-          done();
+        }).catch((err) => {
+          done(err);
         });
     });
   });
