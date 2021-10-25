@@ -12,14 +12,17 @@ describe("User", () => {
     it("should get all users record", (done) => {
       chai.request(app)
         .get('/api/v1/user/all')
-        .end((err, res) => {
+        .then((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
+          done();
+        }).catch(() => {
           done();
         });
     });
   });
 });
+
 
 describe('User', function () {
   it('should Register user', function (done) {
