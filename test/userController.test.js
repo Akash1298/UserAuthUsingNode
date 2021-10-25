@@ -7,35 +7,51 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 chai.should();
 
-describe("User", () => {
-  describe("GET /", () => {
-    it("should get all users record", async (done) => {
-      //let res = await 
-      chai.request(app).get('/api/v1/user/all')
-        .then((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        }).catch(done);
-      // if (res.status === 200) {
-      //   res.should.have.status(200);
-      //   res.body.should.be.a('object');
-      //   done();
-      // } else {
-      //   done(err);
-      // }
-      // chai.request(app)
-      //   .get('/api/v1/user/all')
-      //   .then((err, res) => {
-      //     res.should.have.status(200);
-      //     res.body.should.be.a('object');
-      //     done();
-      //   }).catch((err) => {
-      //     done(err);
-      //   });
-    });
-  });
-});
+describe('User', function () {
+  it('should get all users record', function (done) {
+    chai.request(app)
+      .get('/api/v1/user/all')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      })
+  })
+})
+
+
+// describe("User", () => {
+//   describe("GET /", () => {
+//     it("should get all users record", (done) => {
+//       chai.request(app)
+//         .get('/api/v1/user/all')
+//         .then((err, res) => {
+//           console.log(res, "called")
+//           res.should.have.status(200);
+//           res.body.should.be.a('object');
+//           done();
+//         }).catch((err) => {
+//           done(err);
+//         });
+// if (res.status === 200) {
+//   res.should.have.status(200);
+//   res.body.should.be.a('object');
+//   done();
+// } else {
+//   done(err);
+// }
+// chai.request(app)
+//   .get('/api/v1/user/all')
+//   .then((err, res) => {
+//     res.should.have.status(200);
+//     res.body.should.be.a('object');
+//     done();
+//   }).catch((err) => {
+//     done(err);
+//   });
+//     });
+//   });
+// });
 
 
 describe('User', function () {
