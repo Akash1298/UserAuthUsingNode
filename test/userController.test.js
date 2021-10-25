@@ -10,14 +10,20 @@ chai.should();
 describe("User", () => {
   describe("GET /", () => {
     it("should get all users record", async (done) => {
-      let res = await chai.request(app).get('/api/v1/user/all');
-      if (res.status === 200) {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      } else {
-        done(err);
-      }
+      //let res = await 
+      chai.request(app).get('/api/v1/user/all')
+        .then((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        }).catch(done);
+      // if (res.status === 200) {
+      //   res.should.have.status(200);
+      //   res.body.should.be.a('object');
+      //   done();
+      // } else {
+      //   done(err);
+      // }
       // chai.request(app)
       //   .get('/api/v1/user/all')
       //   .then((err, res) => {
