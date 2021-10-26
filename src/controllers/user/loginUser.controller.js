@@ -15,7 +15,6 @@ const SignIn = async (req, res) => {
 			return res.status(400).send("Incorrect email or password");
 		}
 		const user = await User.findOne({ email }).select('+password');
-		console.log(user);
 		if (user) {
 			bcrypt.compare(password, user.password, function (err, response) {
 				if (response) {

@@ -104,20 +104,20 @@ describe('User', function () {
 
 
 describe('User', function () {
+  let response;
+  before(async () => {
+    response = await request.get('/api/v1/user/getUserByEmail').send({
+      email: 'tester@gmail.com',
+    }
+    )
+  });
   it('should get User By Email', function (done) {
-    request
-      .get('/api/v1/user/getUserByEmail')
-      .send({
-        email: 'tester@gmail.com',
-      }
-      )
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      })
+    response.should.have.status(200);
+    response.body.should.be.a('object');
+    done();
   })
 })
+
 
 describe('User', function () {
   it('should delete User', function (done) {
