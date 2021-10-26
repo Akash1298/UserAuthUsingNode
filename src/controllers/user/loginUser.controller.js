@@ -1,36 +1,39 @@
 const User = require('../../../models/user');
 const bcrypt = require("bcrypt");
 
-const SignIn = (req, res) => {
-	const { email, password } = req.body;
-	if (email && password) {
-		User.findOne({ email: email }, function (err, result) {
-			if (result) {
-				bcrypt.compare(password, result.password, function (err, response) {
-					if (response) {
-						res.json({
-							message: 'User found',
-							status: 200,
-						})
-					} else {
-						res.json({
-							message: 'Invalid password',
-							status: 404,
-						})
-					}
-				});
-			} else if (!result) {
-				res.json({
-					message: 'User not found, Register yourself first',
-					status: 404,
-				})
-			}
-		})
-	} else {
-		res.json({
-			message: 'Please enter email and password.',
-			status: 404,
-		})
+
+const SignIn = async (req, res) => {
+	try {
+		const { email, password } = req.body;
+
+		if (!(email && password)) {
+			res.status(400).send("All input is required");
+		}
+
+		const oldUser = await User.findOne({ email });
+		if (!oldUser) {
+			return res.status(400).send("Incorrect email or password");
+		}
+		const user = await User.findOne({ email }).select('+password');
+		console.log(user);
+		if (user) {
+			bcrypt.compare(password, user.password, function (err, response) {
+				if (response) {
+					res.status(200).send({
+						message: 'User found',
+						status: true,
+					})
+				} else {
+					res.status(400).send({
+						message: 'Invalid password',
+						status: false,
+					})
+				}
+			});
+		}
+
+	} catch (err) {
+		return res.status(400).send("Something went wrong.");
 	}
 }
 module.exports = SignIn;

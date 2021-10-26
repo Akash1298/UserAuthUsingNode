@@ -70,40 +70,39 @@ describe('User', function () {
 
 
 describe('User', function () {
-
   let response;
   before(async () => {
     response = await request.post('/api/v1/user/sign-up').send({
-      fullName: 'Paul Oluyege',
+      userName: 'Paul Oluyege',
       email: 'tester@gmail.com',
       password: 'tester'
     }
     )
   });
   it('should Register user', function (done) {
+    response.should.have.status(200);
+    response.body.should.be.a('object');
+    done();
+  })
+});
 
+describe('User', function () {
+  let response;
+  before(async () => {
+    response = await request.post('/api/v1/user/sign-in').send({
+      email: 'tester@gmail.com',
+      password: 'tester'
+    }
+    )
+  });
+  it('should Login user', function (done) {
+    console.log(response)
     response.should.have.status(200);
     response.body.should.be.a('object');
     done();
   })
 })
 
-describe('User', function () {
-  it('should Login user', function (done) {
-    request
-      .post('/api/v1/user/sign-in')
-      .send({
-        email: 'tester@gmail.com',
-        password: 'tester'
-      }
-      )
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      })
-  })
-})
 
 describe('User', function () {
   it('should get User By Email', function (done) {
