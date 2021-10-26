@@ -7,12 +7,12 @@ const SignIn = async (req, res) => {
 		const { email, password } = req.body;
 
 		if (!(email && password)) {
-			res.status(400).send("All input is required");
+			res.status(400).send({ message: "All input is required", status: false });
 		}
 
 		const oldUser = await User.findOne({ email });
 		if (!oldUser) {
-			return res.status(400).send("Incorrect email or password");
+			return res.status(400).send({ message: "Incorrect email or password", status: false });
 		}
 		const user = await User.findOne({ email }).select('+password');
 		if (user) {
