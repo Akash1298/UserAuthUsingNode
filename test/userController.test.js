@@ -96,7 +96,6 @@ describe('User', function () {
     )
   });
   it('should Login user', function (done) {
-    console.log(response)
     response.should.have.status(200);
     response.body.should.be.a('object');
     done();
