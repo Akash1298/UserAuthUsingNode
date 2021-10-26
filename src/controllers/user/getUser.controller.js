@@ -8,7 +8,7 @@ const GetUser = async (req, res) => {
 		if (user) {
 			res.json({
 				message: 'User found',
-				status: 200,
+				status: true,
 				details: {
 					email: user.email,
 					userName: user.userName,

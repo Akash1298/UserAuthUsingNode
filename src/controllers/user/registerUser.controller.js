@@ -11,7 +11,7 @@ const SignUp = async (req, res) => {
 
 		const oldUser = await User.findOne({ email });
 		if (oldUser) {
-			return res.status(400).send("User Already Exist. Please Login");
+			return res.status(400).send({ message: "User Already Exist. Please Login", status: false });
 		}
 
 		let encryptedPassword = await bcrypt.hash(password, 10);
@@ -24,7 +24,7 @@ const SignUp = async (req, res) => {
 		const token = jwt.sign({ newUser }, 'shhhhh');
 
 		return res.status(200).json({
-			status: 'success',
+			status: true,
 			token
 		});
 	} catch (err) {
