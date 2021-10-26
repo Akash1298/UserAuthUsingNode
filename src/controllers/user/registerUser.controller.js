@@ -1,7 +1,6 @@
 const User = require('../../../models/user');
 const bcrypt = require("bcrypt");
-//const saltRounds = 10;
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const SignUp = async (req, res) => {
 	try {
@@ -22,7 +21,7 @@ const SignUp = async (req, res) => {
 			password: encryptedPassword,
 		});
 
-		var token = jwt.sign({ newUser }, 'shhhhh');
+		const token = jwt.sign({ newUser }, 'shhhhh');
 
 		return res.status(200).json({
 			status: 'success',
