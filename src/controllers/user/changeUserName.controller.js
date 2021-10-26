@@ -1,32 +1,29 @@
 const User = require('../../../models/user');
 
-const ChaneUserName = (req, res) => {
+const ChaneUserName = async (req, res) => {
 	const { id } = req.params;
 	const { userName } = req.body;
 	if (id && userName) {
-		User.findOne({ _id: id }, async (err, result) => {
-			if (result) {
-				const response = await User.updateOne(
-					{ _id: id },
-					{ $set: { userName: userName } }
-				);
-				console.log(response);
-
-				res.json({
-					message: 'Username changed successfully.',
-					status: 200,
-				})
-			} else if (!result) {
-				res.json({
-					message: 'User Not Found',
-					status: 404,
-				})
-			}
-		})
+		const result = await User.findOne({ _id: id })
+		if (result) {
+			await User.updateOne(
+				{ _id: id },
+				{ $set: { userName: userName } }
+			);
+			return res.status(200).send({
+				message: 'Username changed successfully.',
+				status: true,
+			})
+		} else if (!result) {
+			return res.status(400).send({
+				message: 'User Not Found',
+				status: false,
+			})
+		}
 	} else {
-		res.json({
+		return res.status(400).send({
 			message: 'Provide username and id.',
-			status: 404,
+			status: false,
 		})
 	}
 }

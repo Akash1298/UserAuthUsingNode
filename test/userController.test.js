@@ -12,7 +12,6 @@ const request = chai.request(app).keepOpen();
 
 describe('User', function () {
   let response;
-
   before(async () => {
     response = await request.get('/api/v1/user/all')
   });
@@ -22,51 +21,6 @@ describe('User', function () {
     done();
   });
 })
-// describe('User', function () {
-//   it('should get all users record', function (done) {
-//     request
-//       .get('/api/v1/user/all')
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.should.be.a('object');
-//         done();
-//       })
-//   })
-// })
-
-
-// describe("User", () => {
-//   describe("GET /", () => {
-//     it("should get all users record", (done) => {
-//       chai.request(app)
-//         .get('/api/v1/user/all')
-//         .then((err, res) => {
-//           console.log(res, "called")
-//           res.should.have.status(200);
-//           res.body.should.be.a('object');
-//           done();
-//         }).catch((err) => {
-//           done(err);
-//         });
-// if (res.status === 200) {
-//   res.should.have.status(200);
-//   res.body.should.be.a('object');
-//   done();
-// } else {
-//   done(err);
-// }
-// chai.request(app)
-//   .get('/api/v1/user/all')
-//   .then((err, res) => {
-//     res.should.have.status(200);
-//     res.body.should.be.a('object');
-//     done();
-//   }).catch((err) => {
-//     done(err);
-//   });
-//     });
-//   });
-// });
 
 
 describe('User', function () {
@@ -120,54 +74,55 @@ describe('User', function () {
 
 
 describe('User', function () {
+  let response;
+  before(async () => {
+    response = await request.delete('/api/v1/user/deleteUser').send({
+      email: 'tester@gmail.com',
+      password: 'tester'
+    }
+    )
+  });
   it('should delete User', function (done) {
-    request
-      .delete('/api/v1/user/deleteUser')
-      .send({
-        email: 'tester@gmail.com',
-        password: 'tester'
-      }
-      )
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      })
+    response.should.have.status(200);
+    response.body.should.be.a('object');
+    done();
   })
 })
 
 describe('User', function () {
+  let response;
+  before(async () => {
+    response = await request.post('/api/v1/user/change-password').send({
+      email: 'akash11@gmail.com',
+      password: 'test',
+      resetPassword: 'test',
+    }
+    )
+  });
   it('should change password', function (done) {
-    request
-      .post('/api/v1/user/change-password')
-      .send({
-        email: 'test@gmail.com',
-        password: 'test',
-        resetPassword: 'test',
-      }
-      )
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      })
+    response.should.have.status(200);
+    response.body.should.be.a('object');
+    done();
   })
 })
 
+
 describe('User', function () {
+  let response;
+  before(async () => {
+    response = await request.put(`/api/v1/user/616d60295e8c7de682eef239`).send({
+      userName: 'tester',
+    }
+    )
+  });
   it('should change user name', function (done) {
-    const id = 1;
-    request
-      .put(`/api/v1/user/${id}`)
-      .send({
-        email: 'test@gmail.com',
-      }
-      )
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      })
+    console.log(response.body);
+    console.log(response.status);
+    response.should.have.status(200);
+    response.body.should.be.a('object');
+    done();
   })
 })
+
+
 
