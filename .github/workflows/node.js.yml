@@ -25,6 +25,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+      - name: Start MongoDB v${{ matrix.mongodb-version }}
+        uses: superchargejs/mongodb-github-action@1.0.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test

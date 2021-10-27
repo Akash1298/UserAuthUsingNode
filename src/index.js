@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const url = 'mongodb://localhost/UsersData';
+const url = 'mongodb+srv://users:users%4001@cluster0.yneev.mongodb.net/users?retryWrites=true&w=majority';
 var bodyParser = require('body-parser');
 const userRouter = require('./routes/index');
 
 const app = express();
 
-mongoose.connect(url, { useNewUrlParser: true });
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const con = mongoose.connection
 app.use(bodyParser.json());
