@@ -37,26 +37,26 @@ describe('User', () => {
       done();
     });
   });
-  describe('Create a new user', () => {
-    it('it should create a new user', (done) => {
-      const user = {
-        userName: 'Akash',
-        email: 'akashrana0153@gmail.com',
-        password: '123456',
-      };
-      chai
-        .request(app)
-        .post('/api/v1/user/sign-up')
-        .send(user)
-        .end((err, res) => {
-          console.log(res.body, res.status)
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('status', true);
-          done();
-        });
-    });
-  });
+  // describe('Create a new user', () => {
+  //   it('it should create a new user', (done) => {
+  //     const user = {
+  //       userName: 'Akash',
+  //       email: 'akashrana0153@gmail.com',
+  //       password: '123456',
+  //     };
+  //     chai
+  //       .request(app)
+  //       .post('/api/v1/user/sign-up')
+  //       .send(user)
+  //       .end((err, res) => {
+  //         console.log(res.body, res.status)
+  //         res.should.have.status(200);
+  //         res.body.should.be.a('object');
+  //         res.body.should.have.property('status', true);
+  //         done();
+  //       });
+  //   });
+  // });
 
   describe('Create user with duplicate data', () => {
     it('it should not allow duplicate email', (done) => {
@@ -125,24 +125,24 @@ describe('User', () => {
     });
   });
 
-  describe('get user by email id', () => {
-    it('it should return user by email id', (done) => {
-      const user = {
-        email: 'akashrana0153@gmail.com',
-      };
-      chai
-        .request(app)
-        .get('/api/v1/user/getUserByEmail')
-        .send(user)
-        .end((err, res) => {
-          console.log(res.body, res.status)
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          res.body.should.have.property('status', true);
-          done();
-        });
-    });
-  });
+  // describe('get user by email id', () => {
+  //   it('it should return user by email id', (done) => {
+  //     const user = {
+  //       email: 'akashrana0153@gmail.com',
+  //     };
+  //     chai
+  //       .request(app)
+  //       .get('/api/v1/user/getUserByEmail')
+  //       .send(user)
+  //       .end((err, res) => {
+  //         console.log(res.body, res.status)
+  //         res.should.have.status(200);
+  //         res.body.should.be.a('object');
+  //         res.body.should.have.property('status', true);
+  //         done();
+  //       });
+  //   });
+  // });
 });
 
 
