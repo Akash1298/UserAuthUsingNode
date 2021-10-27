@@ -1,6 +1,6 @@
 const User = require('../../../models/user');
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 
 const SignUp = async (req, res) => {
 	try {
@@ -21,14 +21,15 @@ const SignUp = async (req, res) => {
 			password: encryptedPassword,
 		});
 
-		const token = jwt.sign({ newUser }, 'shhhhh');
+		//const token = jwt.sign({ newUser }, 'shhhhh');
 
 		return res.status(200).json({
 			status: true,
-			token
+			email: newUser.email,
+			message: "User Successfully added"
 		});
 	} catch (err) {
-		return res.status(400).send("Something went wrong.");
+		return res.status(400).send({ message: "Something went wrong.", status: false });
 	}
 }
 module.exports = SignUp;

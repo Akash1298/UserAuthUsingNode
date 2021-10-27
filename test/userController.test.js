@@ -49,6 +49,7 @@ describe('User', () => {
         .post('/api/v1/user/sign-up')
         .send(user)
         .end((err, res) => {
+          console.log(res.body, res.status)
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.should.have.property('status', true);
