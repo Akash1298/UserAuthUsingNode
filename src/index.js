@@ -6,7 +6,7 @@ const userRouter = require('./routes/index');
 
 const app = express();
 
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true });
 
 const con = mongoose.connection
 app.use(bodyParser.json());
