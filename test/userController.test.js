@@ -27,13 +27,13 @@ chai.should();
 
 describe('User', () => {
   before((done) => {
-    User.deleteOne({ email: 'akashrana0153@gmail.com' }, () => {
+    User.remove({}, () => {
       done();
     });
   });
 
   after((done) => {
-    User.deleteOne({ email: 'akashrana0153@gmail.com' }, () => {
+    User.remove({}, () => {
       done();
     });
   });
