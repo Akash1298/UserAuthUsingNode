@@ -10,18 +10,18 @@ const ChaneUserName = async (req, res) => {
 				{ _id: id },
 				{ $set: { userName: userName } }
 			);
-			return res.status(200).send({
+			return res.status(200).json({
 				message: 'Username changed successfully.',
 				status: true,
 			})
 		} else if (!result) {
-			return res.status(400).send({
+			return res.status(400).json({
 				message: 'User Not Found',
 				status: false,
 			})
 		}
 	} else {
-		return res.status(400).send({
+		return res.status(400).json({
 			message: 'Provide username and id.',
 			status: false,
 		})

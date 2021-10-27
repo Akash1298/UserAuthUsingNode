@@ -16,13 +16,13 @@ const GetUser = async (req, res) => {
 				}
 			})
 		} else if (!user) {
-			res.status(400).send({
+			res.status(400).json({
 				message: 'User not found',
 				status: false,
 			})
 		}
 		else {
-			res.status(400).send({
+			res.status(400).json({
 				message: 'Please provide email.',
 				status: false,
 			})

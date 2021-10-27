@@ -27,13 +27,13 @@ chai.should();
 
 describe('User', () => {
   before((done) => {
-    User.remove({}, () => {
+    User.deleteOne({ email: 'akashrana0153@gmail.com' }, () => {
       done();
     });
   });
 
   after((done) => {
-    User.remove({}, () => {
+    User.deleteOne({ email: 'akashrana0153@gmail.com' }, () => {
       done();
     });
   });
@@ -49,7 +49,6 @@ describe('User', () => {
         .post('/api/v1/user/sign-up')
         .send(user)
         .end((err, res) => {
-          console.log(res.body)
           res.should.have.status(200);
           res.body.should.be.a('object');
           res.body.should.have.property('status', true);

@@ -11,7 +11,7 @@ const DeleteUser = async (req, res) => {
 				if (resp) {
 					User.deleteOne({ email: email }, (err, response) => {
 						if (response) {
-							res.status(200).send({
+							res.status(200).json({
 								message: 'Deleted Successfully.',
 								status: true,
 								details: {
@@ -21,28 +21,28 @@ const DeleteUser = async (req, res) => {
 								}
 							})
 						} else {
-							res.status(400).send({
+							res.status(400).json({
 								message: 'Invalid details.',
 								status: false,
 							})
 						}
 					});
 				} else {
-					res.status(400).send({
+					res.status(400).json({
 						message: 'Invalid password',
 						status: false,
 					})
 				}
 			});
 		} else if (!result) {
-			res.status(400).send({
+			res.status(400).json({
 				message: 'User not found.',
 				status: false,
 			})
 		}
 
 	} else {
-		res.json({
+		res.status(400).json({
 			message: 'Please enter email and password.',
 			status: 404,
 		})

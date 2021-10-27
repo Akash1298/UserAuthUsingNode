@@ -6,12 +6,12 @@ const SignUp = async (req, res) => {
 	try {
 		const { userName, email, password } = req.body;
 		if (!(userName && email && password)) {
-			res.status(400).send("All input is required");
+			res.status(400).json({ message: "All input is required", status: false });
 		}
 
 		const oldUser = await User.findOne({ email });
 		if (oldUser) {
-			return res.status(400).send({ message: "User Already Exist. Please Login", status: false });
+			return res.status(400).json({ message: "User Already Exist. Please Login", status: false });
 		}
 
 		let encryptedPassword = await bcrypt.hash(password, 10);

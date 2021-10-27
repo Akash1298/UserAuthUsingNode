@@ -15,27 +15,27 @@ const ChangePassword = async (req, res) => {
 							{ $set: { password: hash } }
 						);
 
-						return res.status(200).send({
+						return res.status(200).json({
 							message: 'Password changed successfully.',
 							status: true,
 						})
 					});
 
 				} else {
-					return res.status(400).send({
+					return res.status(400).json({
 						message: 'Invalid password',
 						status: false,
 					})
 				}
 			});
 		} else if (!result) {
-			return res.status(400).send({
+			return res.status(400).json({
 				message: 'User not found.',
 				status: false,
 			})
 		}
 	} else {
-		return res.status(400).send({
+		return res.status(400).json({
 			message: 'Please enter email and password.',
 			status: false,
 		})
