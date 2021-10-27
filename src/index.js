@@ -1,30 +1,23 @@
-
-
-
-
-
-
 const express = require('express');
+const mongoose = require('mongoose');
+const url = 'mongodb+srv://users:users%4001@cluster0.yneev.mongodb.net/users?retryWrites=true&w=majority';
+var bodyParser = require('body-parser');
 const userRouter = require('./routes/index');
 
 const app = express();
-const port = 9000;
-require('../config/mongoose');
 
-app.use(express.urlencoded());
-app.use(express.json());
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// use express router
+const con = mongoose.connection
+app.use(bodyParser.json());
+
+con.on('open', () => {
+	console.log('Connected...');
+})
+
 app.use('/api/v1/user', userRouter);
 
-app.listen(port, (err) => {
-	if (err) {
-		// eslint-disable-next-line no-console
-		console.log(`error to fire up the server: ${err}`);
-		return;
-	}
-	// eslint-disable-next-line no-console
-	console.log(`server is running on port : ${port}`);
-});
-
+app.listen(9000, () => {
+	console.log("server Started");
+})
 module.exports = app;
