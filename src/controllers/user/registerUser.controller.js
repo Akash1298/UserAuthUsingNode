@@ -29,7 +29,7 @@ const SignUp = async (req, res) => {
 			message: "User Successfully added"
 		});
 	} catch (err) {
-		return res.status(400).send({ message: "Something went wrong.", status: false });
+		return res.status(400).send({ message: `Something went wrong.,${err}`, status: false });
 	}
 }
 module.exports = SignUp;

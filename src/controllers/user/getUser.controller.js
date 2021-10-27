@@ -6,7 +6,7 @@ const GetUser = async (req, res) => {
 		const user = await User.findOne({ email });
 
 		if (user) {
-			res.json({
+			return res.status(200).json({
 				message: 'User found',
 				status: true,
 				details: {
@@ -16,13 +16,13 @@ const GetUser = async (req, res) => {
 				}
 			})
 		} else if (!user) {
-			res.status(400).json({
+			return res.status(400).json({
 				message: 'User not found',
 				status: false,
 			})
 		}
 		else {
-			res.status(400).json({
+			return res.status(400).json({
 				message: 'Please provide email.',
 				status: false,
 			})
